@@ -12,12 +12,12 @@ context('end to end tests', function(){
 
   describe('homepage route', function(){
 
-    it('has status 200', function(done) { // <= Pass in done callback
+    it('has status 200', function(done) { 
       chai.request('http://localhost:3000')
       .get('/')
       .end(function(err, res) {
         expect(res).to.have.status(200);
-        done();                               // <= Call done to signal callback end
+        done();
       });
     });
     it('renders index.ejs', function(done) {
@@ -26,7 +26,7 @@ context('end to end tests', function(){
       .end(function(err, res) {
         expect(res.text).to.include('Jared');
         expect(res.text).to.include('Tanner');
-        done();                               // <= Call done to signal callback end
+        done();
       });
     });
   })
@@ -51,6 +51,18 @@ context('end to end tests', function(){
         done();
       })
     })
+  })
+
+  describe('individual contact deletion', function(){
+    it('renders index.ejs', function(done) {
+      chai.request('http://localhost:3000')
+      .delete('/contacts/3')
+      .end(function(err, res) {
+        expect(res.text).to.not.include('James');
+        expect(res.text).to.include('Jared');
+        done();
+      });
+    });
   })
 
 })
