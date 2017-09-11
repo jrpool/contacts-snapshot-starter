@@ -9,7 +9,7 @@
     "db:reset": "dropdb contacts_testing && createdb contacts_testing && npm run load_schema",
     "load_schema": "psql -d contacts_testing < src/models/db/schema/schema.sql",
     "load_contacts": "psql -d contacts_testing < test/seed/contacts.sql",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/*/*.js"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,9 @@
     "pg-promise": "^6.2.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "chai-http": "^3.0.0",
+    "mocha": "^3.5.3",
     "nodemon": "^1.11.0"
   }
 }
