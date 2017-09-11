@@ -22,6 +22,7 @@
     "pg-promise": "^6.2.1"
   },
   "devDependencies": {
+    "chai-http": "^3.0.0",
     "nodemon": "^1.11.0"
   }
 }
