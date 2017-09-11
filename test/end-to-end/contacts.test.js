@@ -42,4 +42,15 @@ context('end to end tests', function(){
     })
   })
 
+  describe('individual contact route', function(){
+    it('renders the correct page for an individual contact', function(done) {
+      chai.request('http://localhost:3000')
+      .get('/contacts/3')
+      .end(function(err, res) {
+        expect(res.text).to.include('James')
+        done();
+      })
+    })
+  })
+
 })
