@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 context('end to end tests', function(){
   beforeEach(function() {
-    execSync('npm run load_contacts')
+    execSync('npm run load_schema && npm run load_contacts')
   })
 
   describe('homepage route', function(){
