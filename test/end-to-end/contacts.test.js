@@ -12,7 +12,7 @@ context('end to end tests', function(){
 
   describe('homepage route', function(){
 
-    it('has status 200', function(done) { 
+    it('has status 200', function(done) {
       chai.request('http://localhost:3000')
       .get('/')
       .end(function(err, res) {
@@ -63,6 +63,20 @@ context('end to end tests', function(){
         done();
       });
     });
+  })
+
+  describe('search contacts', function(){
+    it('renders page with only matching names', function(done) {
+      chai.request('http://localhost:3000')
+      .get('/contacts/search')
+      .query({q: 'Ja'})
+      .end(function(err, res) {
+        expect(res.text).to.include('Jared')
+        expect(res.text).to.include('James')
+        expect(res.text).to.not.include('Tanner')
+        done()
+      })
+    })
   })
 
 })
