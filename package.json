@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "start:dev": "nodemon src/server.js",
-    "db:reset": "dropdb contacts_development && createdb contacts_development && npm run load_schema",
-    "load_schema": "psql -d contacts_development < src/models/db/schema/schema.sql",
-    "load_contacts": "psql -d contacts_development < test/seed/contacts.sql",
+    "db:reset": "dropdb contacts_testing && createdb contacts_testing && npm run load_schema",
+    "load_schema": "psql -d contacts_testing < src/models/db/schema/schema.sql",
+    "load_contacts": "psql -d contacts_testing < test/seed/contacts.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
