@@ -42,10 +42,24 @@ context('integration tests', function() {
   })
 
   describe(`create`, () => {
-    it.only(`create({first_name: 'Jonathan', last_name: 'Pool'}) should return an object with Id 4`, () => {
+    it(`create({first_name: 'Jonathan', last_name: 'Pool'}) should return an object with Id 4`, () => {
       return query.create({first_name: 'Jonathan', last_name: 'Pool'})
       .then(data => {
         expect(data[0].id).to.equal(4)
+      })
+    })
+  })
+
+  describe(`destroy`, () => {
+    it.only(`destroyed contact - name no longer found`, () => {
+      return query.destroy(2)
+      .then(() => {
+        query.findAll()
+        .then(data => {
+          expect(data).to.have.lengthOf(2)
+          expect(data.filter(record => record.first_name.includes('Tanner')))
+          .to.have.lengthOf(0)
+        })
       })
     })
   })
