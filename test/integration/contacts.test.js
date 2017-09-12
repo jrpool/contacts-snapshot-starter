@@ -23,4 +23,13 @@ context('integration tests', function() {
     })
   })
 
+  describe(`findById`, () => {
+    it.only(`findById(1) should return Jared's info`, () => {
+      return query.findById(1)
+      .then(data => {
+        expect(data.last_name).to.equal('Grippe')
+      })
+    })
+  })
+
 })
