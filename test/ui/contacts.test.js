@@ -25,9 +25,18 @@ context('ui tests', function() {
         .fill('last_name', 'Smith')
         .pressButton('Add Contact', done);
       });
-      it.only('should see welcome page', function() {
+      it('should see welcome page', function() {
         browser.assert.text('h1', 'Rhonda Smith');
       });
+    })
+  })
+
+  describe('/', function() {
+    before(function(done) {
+      browser.visit(url, done);
+    });
+    it('should display a list of contacts', function() {
+      browser.assert.elements('div[class=contact-list-member]', 3)
     })
   })
 
