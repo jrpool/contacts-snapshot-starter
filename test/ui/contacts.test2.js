@@ -3,9 +3,9 @@ const Browser = require('zombie');
 const url = 'http://localhost:3000'
 const browser = new Browser();
 
-context('ui tests', function() {
+context.only('ui tests', function() {
   beforeEach(function() {
-    console.log('This beforeEach function is doing stuff')
+    console.log('The beforeEach function!!!!!!!!')
     execSync('npm run load_schema && npm run load_contacts')
   })
 
@@ -29,8 +29,8 @@ context('ui tests', function() {
         it('should see welcome page', function() {
           browser.assert.text('h1', 'Rhonda Smith');
         });
-      })
     })
+  })
 
   describe('/', function() {
     before(function(done) {
@@ -40,20 +40,23 @@ context('ui tests', function() {
         browser.assert.elements('div[class=contact-list-member]', 3)
         browser.assert.elements('button[class=delete-contact]', 3)
       })
-      it('should alert to confirm deletion', function() {
-        browser.pressButton('.delete-contact', function() {
-          browser.prompted('Are you sure you want to delete this contact?')
-        }) //this one keeps passing no matter what
-      })
+    it('should alert to confirm deletion', function() {
+      // console.log('blah blah blah', Object.keys(browser._events))
+      browser.pressButton('.delete-contact', function() {
+        // console.log('Is this working?', browser.document)
+        browser.assert.prompted('Are you sure you want to delete this contact?')
+        , console.log('An error has occured.')
+      }) //this one keeps passing no matter what
     })
+  })
 
-  describe('/contacts/3', function() {
+  describe('/contacts/2', function() {
     before(function(done) {
-      browser.visit(url + '/contacts/3', done);
+      browser.visit(url + '/contacts/2', done);
     });
     it('should alert to confirm deletion', function() {
       browser.pressButton('.delete-contact', function() {
-        browser.prompted('Are you sure you want to delete this contact?')
+        browser.assert.prompted('Are you sure you want to delete this contact?')
       })
     }) // this one only passes/works properly with it.only, otherwise get "browser.prompted is not a function"
   })
