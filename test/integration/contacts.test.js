@@ -24,10 +24,28 @@ context('integration tests', function() {
   })
 
   describe(`findById`, () => {
-    it.only(`findById(1) should return Jared's info`, () => {
+    it(`findById(1) should return Jared's info`, () => {
       return query.findById(1)
       .then(data => {
         expect(data.last_name).to.equal('Grippe')
+      })
+    })
+  })
+
+  describe(`search`, () => {
+    it(`search(Ja) should return two rows`, () => {
+      return query.search('Ja')
+      .then(data => {
+        expect(data).to.have.lengthOf(2)
+      })
+    })
+  })
+
+  describe(`create`, () => {
+    it.only(`create({first_name: 'Jonathan', last_name: 'Pool'}) should return an object with Id 4`, () => {
+      return query.create({first_name: 'Jonathan', last_name: 'Pool'})
+      .then(data => {
+        expect(data[0].id).to.equal(4)
       })
     })
   })
