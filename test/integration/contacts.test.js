@@ -51,7 +51,7 @@ context('integration tests', function() {
   })
 
   describe(`destroy`, () => {
-    it.only(`destroyed contact - name no longer found`, () => {
+    it(`destroyed contact - name no longer found`, () => {
       return query.destroy(2)
       .then(() => {
         query.findAll()
