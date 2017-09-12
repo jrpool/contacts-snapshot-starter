@@ -79,4 +79,23 @@ context('end to end tests', function(){
     })
   })
 
+  describe('create new contact', function(){
+    it('adds the specified contact and renders it on its own page', function(done) {
+      chai.request('http://localhost:3000')
+      .post('/contacts')
+      .type('form')
+      .send({
+        'first_name': 'Rhonda',
+        'last_name': 'Smith'
+      })
+      .end(function(err, res) {
+        console.log(res.text)
+        expect(res).to.redirectTo('http://localhost:3000/contacts/4');
+        expect(res.text).to.include('Rhonda');
+        expect(res.text).to.include('Smith');
+        expect(res.text).to.not.include('Jared');
+        done();
+      })
+    })
+  })
 })

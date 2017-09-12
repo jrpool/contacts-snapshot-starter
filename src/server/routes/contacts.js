@@ -7,6 +7,7 @@ router.get('/new', (request, response) => {
 })
 
 router.post('/', (request, response, next) => {
+  console.log('REQUEST BODY', request.body)
   contacts.create(request.body)
     .then(function(contact) {
       if (contact) return response.redirect(`/contacts/${contact[0].id}`)
@@ -16,6 +17,7 @@ router.post('/', (request, response, next) => {
 })
 
 router.get('/:contactId', (request, response, next) => {
+  console.log('individual contact route: Are we in here?????')
   const contactId = request.params.contactId
   if (!contactId || !/^\d+$/.test(contactId)) return next()
   contacts.findById(contactId)
