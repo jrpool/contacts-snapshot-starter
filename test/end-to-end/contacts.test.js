@@ -89,7 +89,6 @@ context('end to end tests', function(){
         'last_name': 'Smith'
       })
       .end(function(err, res) {
-        console.log(res.text)
         expect(res).to.redirectTo('http://localhost:3000/contacts/4');
         expect(res.text).to.include('Rhonda');
         expect(res.text).to.include('Smith');
