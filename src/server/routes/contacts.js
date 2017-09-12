@@ -17,7 +17,6 @@ router.post('/', (request, response, next) => {
 })
 
 router.get('/:contactId', (request, response, next) => {
-  console.log('individual contact route: Are we in here?????')
   const contactId = request.params.contactId
   if (!contactId || !/^\d+$/.test(contactId)) return next()
   contacts.findById(contactId)
