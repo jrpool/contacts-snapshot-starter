@@ -40,4 +40,15 @@ context('ui tests', function() {
     })
   })
 
+  describe('/contacts/3', function() {
+    before(function(done) {
+      browser.visit(url + '/contacts/3', done);
+    });
+    it.only('should alert to confirm deletion', function() {
+      browser.pressButton('.delete-contact', function() {
+        browser.prompted('Are you sure you want to delete this contact?')
+      })
+    })
+  })
+
 })
