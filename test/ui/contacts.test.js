@@ -3,7 +3,7 @@ const Browser = require('zombie');
 const url = 'http://localhost:3000'
 let browser = new Browser();
 
-context.only('ui tests', function() {
+context('ui tests', function() {
   beforeEach(function() {
     console.log('This beforeEach function is doing stuff')
     execSync('npm run load_schema && npm run load_contacts')
@@ -63,12 +63,12 @@ context.only('ui tests', function() {
         // browser = new Browser();
         browser.visit(url + '/contacts/1', done);
       });
-      it.only('should alert to confirm deletion', function() {
+      it('should alert to confirm deletion', function() {
         browser.pressButton('.delete-contact', function() {
           browser.prompted('Are you sure you want to delete this contact?')
         })
       })
-    }) 
+    })
     //individual contact page:
     //whether it passes/works properly depends on if browser is defined outside or not,
     //whether there is a before or a before each inside and if the test has been run
