@@ -5,7 +5,6 @@ let browser;
 
 context.only('UI tests', function() {
   beforeEach(function(done) {
-    console.log('beforeEach is executing.');
     execSync('npm run load_schema && npm run load_contacts');
     done();
   })
@@ -14,6 +13,10 @@ context.only('UI tests', function() {
     before(function(done) {
       browser = new Browser();
       browser.visit(url + '/contacts/new', done);
+      console.log(
+        '1: confirm has keys:\n'
+        + Object.keys(browser.window.confirm).join('\n')
+      );
     });
       it('GET to /contacts/new gets new-contact form', function() {
         browser.assert.element('form[class=new-contact-form]');
@@ -22,10 +25,12 @@ context.only('UI tests', function() {
 
   describe('POST /contacts/new', function() {
     before(function(done) {
+      console.log('1st before');
       browser = new Browser();
       browser.visit(url + '/contacts/new', done);
     });
     before(function(done) {
+      console.log('2nd before');
       browser
       .fill('first_name', 'Rhonda')
       .fill('last_name', 'Smith')
@@ -42,7 +47,7 @@ context.only('UI tests', function() {
         browser.visit(url, done);
       });
       it('GET to / gets contact-list page', function() {
-        browser.assert.elements('div[class=contact-list-member]', 3);
+        browser.assert.elements('.contact-list-member', 3);
         browser.assert.elements('.delete-contact', 3);
       }) // Pass and fail conditions behaving properly.
     })
@@ -54,8 +59,16 @@ context.only('UI tests', function() {
       });
       before(function(done) {
         browser.pressButton('.delete-contact', done);
+        console.log(
+          '2: confirm has keys:\n'
+          + Object.keys(browser.window.confirm).join('\n')
+        );
       });
       it('1: DELETE on / gets modal confirm dialog', function(done) {
+        console.log(
+          '3: confirm has keys:\n'
+          + Object.keys(browser.window.confirm).join('\n')
+        );
         browser.on('confirm', function() {
           console.log('Confirmation dialog displayed.');
         });
@@ -71,7 +84,7 @@ context.only('UI tests', function() {
         browser = new Browser();
         browser.visit(url + '/contacts/2', done);
       });
-      it('2: should alert to confirm deletion', function() {
+      it('2: should ask to confirm deletion', function() {
         browser.pressButton('.delete-contact', function() {
           browser.prompted('Are you unsure you want to delete this contact?')
         })
