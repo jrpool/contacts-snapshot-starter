@@ -3,7 +3,7 @@ const Browser = require('zombie');
 const url = 'http://localhost:3000'
 const browser = new Browser();
 
-context.only('ui tests', function() {
+context('ui tests', function() {
   beforeEach(function() {
     console.log('The beforeEach function!!!!!!!!')
     execSync('npm run load_schema && npm run load_contacts')
@@ -50,9 +50,9 @@ context.only('ui tests', function() {
     })
   })
 
-  describe('/contacts/2', function() {
+  describe('/contacts/3', function() {
     before(function(done) {
-      browser.visit(url + '/contacts/2', done);
+      browser.visit(url + '/contacts/3', done);
     });
     it('should alert to confirm deletion', function() {
       browser.pressButton('.delete-contact', function() {
