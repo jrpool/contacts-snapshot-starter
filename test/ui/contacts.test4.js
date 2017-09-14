@@ -50,16 +50,17 @@ context.only('UI tests', function() {
       })
     })
 
-//WORKS PROPERLY in .only. NOT WORKING when all UI tests run (does not delete first contact)
+//WORKS PROPERLY once. have to restart server and retest to do it again.
+//other wise says there are 3 contacts (but visit in browser shows only 2)
     describe('4) yes deletion of contact from home page', function() {
       beforeEach(function(done) {
         browser = new Browser();
         browser.visit(url, done);
       });
       beforeEach(function() {
-        browser.on('confirm', function() {
+        browser.on('confirm === true', function() {
           console.log('Confirming deletion')
-          return true
+          return confirm === true
         })
       });
       it('presses delete button', function() {
@@ -74,16 +75,16 @@ context.only('UI tests', function() {
       // Browser suppresses it unless confirmed.
     });
 
-//NOT WORKING IN .only, WORKING when all UI tests are run:
+//WORKS PROPERLY if all UI tests run. Works once for .only without server restart (that happened once, anyway)
     describe('5) no deletion of contact from home page', function() {
       beforeEach(function(done) {
         browser = new Browser();
         browser.visit(url, done);
       });
       beforeEach(function() {
-        browser.on('confirm', function() {
+        browser.on('confirm === false', function() {
           console.log('Confirming deletion')
-          return false
+          return confirm === false
         })
       });
       it('thought about deleting the first contact', function() {
@@ -105,9 +106,9 @@ context.only('UI tests', function() {
         browser.visit(url + '/contacts/1', done);
       });
       beforeEach(function() {
-        browser.on('confirm', function() {
+        browser.on('confirm === true', function() {
           console.log('Confirming deletion')
-          return true
+          return confirm === true
         })
       });
       it('reached Jared Grippe\'s page', function() {
@@ -119,21 +120,22 @@ context.only('UI tests', function() {
       it('gets a 404 after deleting Jared Grippe\'s page', function() {
         //this gives "Error: Server returned status code 404" but fails test:
           browser.assert.status(404)
-        //this passes the test, though I expect it to fail:
-          browser.assert.text('h1', 'Jared Grippe')
       })
     });
 
-//NOT WORKING in .only (seems to delete contact)
+//WORKING PROPERLY if all UI tests run
+//NOT WORKING in .only if there is a .only when the server starts
+//WORKING PROPERLY in .only if .only is added after running all tests once
+//after server has started and adding .only later (and SOMETIMES it just doesn't in this case too)
     describe('7) changed mind about deleting from individual contact page', function() {
       beforeEach(function(done) {
         browser = new Browser();
         browser.visit(url + '/contacts/2', done);
       });
       beforeEach(function() {
-        browser.on('confirm', function() {
+        browser.on('confirm === false', function() {
           console.log('Confirming deletion')
-          return false
+          return confirm === false
         })
       });
       it('reached Tanner Welsh\'s page', function() {
@@ -143,7 +145,9 @@ context.only('UI tests', function() {
         browser.pressButton('.delete-contact')
       })
       it('goes back to Tanner Welsh\'s page', function() {
-        browser.assert.text('h1', 'Tanner Welsh')
+          browser.assert.text('h1', 'Tanner Welsh')
+      //making this fail purposely with all tests running makes 4 fail no matter
+      //what for each subsequent test unitl server restarts
       })
     });
     //individual contact page:
