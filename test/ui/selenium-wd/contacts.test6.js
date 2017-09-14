@@ -1,4 +1,4 @@
-const {execSync} = require('child_process');
+const {exec, execSync} = require('child_process');
 
 const webdriver = require('selenium-webdriver'),
   By = webdriver.By,
@@ -18,11 +18,16 @@ driver.get('http://localhost:3000/contacts/new')
     .forBrowser('firefox')
     .build();
 })
-.then(() => execSync('npm run load_schema && npm run load_contacts'))
+.then(() => exec('npm run load_schema && npm run load_contacts'))
 .then(() => driver.get('http://localhost:3000/contacts/new'))
 .then(() => driver.findElement(By.className('new-contact-formx')))
 .then(() => driver.quit())
 .catch(error => {
-  console.log(error.message);
+  console.log(
+    'Here is the error message, which should say that an '
+    + 'element with class name new-contact-formx could not '
+    + 'be found:\n'
+    + error.message
+  );
   driver.quit();
 });
