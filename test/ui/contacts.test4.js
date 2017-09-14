@@ -50,7 +50,7 @@ context.only('UI tests', function() {
       })
     })
 
-//WORKS PROPERLY once. have to restart server and retest to do it again.
+//WORKS PROPERLY once with .only. have to restart server and retest to do it again.
 //other wise says there are 3 contacts (but visit in browser shows only 2)
     describe('4) yes deletion of contact from home page', function() {
       beforeEach(function(done) {
@@ -75,7 +75,7 @@ context.only('UI tests', function() {
       // Browser suppresses it unless confirmed.
     });
 
-//WORKS PROPERLY if all UI tests run. Works once for .only without server restart (that happened once, anyway)
+//WORKS PROPERLY
     describe('5) no deletion of contact from home page', function() {
       beforeEach(function(done) {
         browser = new Browser();
