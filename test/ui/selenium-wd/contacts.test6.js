@@ -1,13 +1,28 @@
+const {execSync} = require('child_process');
+
 const webdriver = require('selenium-webdriver'),
   By = webdriver.By,
   until = webdriver.until;
 
-const driver = new webdriver.Builder()
-  .forBrowser('safari')
+execSync('npm run load_schema && npm run load_contacts');
+
+let driver = new webdriver.Builder()
+  .forBrowser('firefox')
   .build();
 
-driver.get('http://www.google.com/ncr');
-driver.findElement(By.name('q')).sendKeys('lq');
-driver.findElement(By.name('btnK')).click();
-driver.wait(until.titleIs('lq - Google Search'), 5000);
-driver.quit();
+driver.get('http://localhost:3000/contacts/new')
+.then(() => driver.findElement(By.className('new-contact-form')))
+.then(() => driver.quit())
+.then(() => {
+  driver = new webdriver.Builder()
+    .forBrowser('firefox')
+    .build();
+})
+.then(() => execSync('npm run load_schema && npm run load_contacts'))
+.then(() => driver.get('http://localhost:3000/contacts/new'))
+.then(() => driver.findElement(By.className('new-contact-formx')))
+.then(() => driver.quit())
+.catch(error => {
+  console.log(error.message);
+  driver.quit();
+});
