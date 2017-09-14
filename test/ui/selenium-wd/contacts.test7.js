@@ -31,7 +31,7 @@ driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.findElement(By.css('input[value=\'Add Contact\']')).click())
 .then(() => driver.findElement(By.css('h1')))
 .then(
-  element => driver.findElement(By.css('h1[value=\'Rhonda Jones\']'))
+  element => driver.wait(until.elementTextIs(element, 'Rhonda Jones'), 3000)
 )
 .then(() => driver.quit())
 .catch(error => {
