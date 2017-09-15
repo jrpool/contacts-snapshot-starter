@@ -1,16 +1,6 @@
-// const {exec, execSync} = require('child_process');
-const {webdriver, By, until, driver} = require('../helpers/db.js')
+const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/db.js')
 
-// const webdriver = require('selenium-webdriver'),
-//   By = webdriver.By,
-//   until = webdriver.until;
-//
-// execSync('npm run load_schema && npm run load_contacts');
-//
-// let driver = new webdriver.Builder()
-//   .forBrowser('chrome')
-//   .build();
-
+reloadDatabase()
 driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.findElement(By.name('first_name')).sendKeys('Rhonda'))
 .then(() => driver.findElement(By.name('last_name')).sendKeys('Smith'))
@@ -33,13 +23,8 @@ driver.get('http://localhost:3000/contacts/new')
     throw 'Rhonda Smith not found in page.';
   }
 })
-.then(() => driver.quit())
-.then(() => exec('npm run load_schema && npm run load_contacts'))
-.then(() => {
-  driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-})
+.then(() => reloadDatabase())
+.then(() => driver.sleep(3000))
 .then(() => driver.get('http://localhost:3000/contacts/new'))
 .then(() => driver.findElement(By.name('first_name')).sendKeys('Rhonda'))
 .then(() => driver.findElement(By.name('last_name')).sendKeys('Smith'))
