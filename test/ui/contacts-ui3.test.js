@@ -7,7 +7,7 @@ const webdriver = require('selenium-webdriver'),
 execSync('npm run load_schema && npm run load_contacts');
 
 let driver = new webdriver.Builder()
-  .forBrowser('firefox')
+  .forBrowser('chrome')
   .build();
 
 driver.get('http://localhost:3000')
@@ -33,7 +33,7 @@ driver.get('http://localhost:3000')
 .then(() => exec('npm run load_schema && npm run load_contacts'))
 .then(() => {
   driver = new webdriver.Builder()
-    .forBrowser('firefox')
+    .forBrowser('chrome')
     .build();
 })
 .then(() => driver.get('http://localhost:3000'))
