@@ -1,4 +1,4 @@
-const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/db.js')
+const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/ui.js')
 
 driver.get('http://localhost:3000')
 .then(() => driver.findElement(

@@ -1,4 +1,4 @@
-const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/db.js')
+const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/ui.js')
 
 driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.findElement(By.className('new-contact-form')))
