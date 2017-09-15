@@ -14,8 +14,8 @@
     "test:selenium":     "node ./test/ui/contacts-ui0.test.js && node ./test/ui/contacts-ui1.test.js && node ./test/ui/contacts-ui2.test.js && node ./test/ui/contacts-ui3.test.js && node ./test/ui/contacts-ui4.test.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jonathan Pool and Rhonda Smith",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.1",
     "ejs": "^2.5.6",
@@ -32,5 +32,12 @@
     "nodemon": "^1.11.0",
     "selenium-webdriver": "^3.5.0",
     "zombie": "^5.0.7"
+  },
+  "bugs": {
+    "url": "https://github.com/jrpool/contacts-snapshot-starter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrpool/contacts-snapshot-starter"
   }
 }
