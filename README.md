@@ -18,6 +18,8 @@ This application satisfies the [requirements](https://curriculum.learnersguild.o
 
 The required end-to-end and integration tests were implemented with the `mocha` and `chai` libraries. The UI tests were implemented with the `selenium-webdriver` library.
 
+Experiments with using `zombie` as a UI testing library were conducted, and incomplete and erroneous code for these is present in the “test” directory, for inspection and further development if desired.
+
 ## Installation and Configuration
 
 0. These instructions presuppose that (1) [npm][npm] and [PostgreSQL][pg] are installed, (2) there is a PostgreSQL database cluster, (3) PostgreSQL is running, and (4) when you connect to the cluster you are a PostgreSQL superuser.
