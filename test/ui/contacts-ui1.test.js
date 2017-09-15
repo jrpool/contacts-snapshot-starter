@@ -17,6 +17,10 @@ driver.get('http://localhost:3000/contacts/new')
 })
 .then(answer => {
   if (answer) {
+    console.log(
+      'Test 1: Are we correctly rendering a new contact on the page?\n'
+      + 'Yes, new contact Rhonda Smith has been found'
+    );
     return true;
   }
   else {
@@ -48,9 +52,11 @@ driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.quit())
 .catch(error => {
   console.log(
-    'Here is the error message, which should say that\n'
+    'Test 1: Making sure it wasn\'t false positive with failing test:\n'
+    + 'Here is the error message, which should say that\n'
     + '“Rhonda Jones” was not found in the page:\n'
     + error
+    +'\n'
   );
   driver.quit();
 });

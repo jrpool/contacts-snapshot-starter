@@ -13,6 +13,10 @@ driver.get('http://localhost:3000/contacts/1')
 })
 .then(answer => {
   if (answer) {
+    console.log(
+      'Test 4: Are we correctly deleting a contact from their individual page?\n'
+      + 'Yes, contact 1 has been deleted.'
+    );
     return true;
   }
   else {
@@ -42,7 +46,8 @@ driver.get('http://localhost:3000/contacts/1')
 .then(() => driver.quit())
 .catch(error => {
   console.log(
-    'Here is the error message, which should say that the page\n'
+    'Test 4: Making sure it wasn\'t false positive with failing test:\n'
+    + 'Here is the error message, which should say that the page\n'
     + 'fails to include contact 1 (which the driver was told to\n'
     + 'find after it was deleted):\n'
     + error
