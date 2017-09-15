@@ -24,8 +24,8 @@ driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.quit())
 .catch(error => {
   console.log(
-    'Here is the error message, which should say that an '
-    + 'element with class name new-contact-formx could not '
+    'Here is the error message, which should say that an\n'
+    + 'element with class name new-contact-formx could not\n'
     + 'be found:\n'
     + error.message
   );
