@@ -9,9 +9,8 @@
     "db:reset": "dropdb contacts_testing && createdb contacts_testing && npm run load_schema",
     "load_schema": "psql -d contacts_testing < src/models/db/schema/schema.sql",
     "load_contacts": "psql -d contacts_testing < test/seed/contacts.sql",
-    "test": "mocha ./test/*/*.js",
-    "test:swd": "node ./test/ui/selenium-wd/contacts.test10.js",
-    "test:wdio": "node ./test/ui/wdio/contacts.test5.js"
+    "test:mocha": "mocha ./test/end-to-end/*.js ./test/integration/*.js",
+    "test:selenium": "node ./test/ui/*.js"
   },
   "keywords": [],
   "author": "",
