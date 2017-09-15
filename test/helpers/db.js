@@ -1,16 +1,17 @@
 const {exec, execSync} = require('child_process');
+
 const webdriver = require('selenium-webdriver'),
   By = webdriver.By,
-  until = webdriver.until;
+  until = webdriver.until,
+  browser = 'chrome';
 
-execSync('npm run load_schema && npm run load_contacts');
+const makeDriver = () => {
+  return new webdriver.Builder().forBrowser(browser).build();
+};
 
-let driver = new webdriver.Builder()
-  .forBrowser('chrome')
-  .build();
+const reload = () => {
+  execSync('npm run load_schema && npm run load_contacts');
+  return '';
+};
 
-  module.exports = {
-    driver,
-    By,
-    until
-  }
+module.exports = {browser, By, makeDriver, reload, until};

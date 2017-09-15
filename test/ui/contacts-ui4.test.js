@@ -37,7 +37,7 @@ driver.get('http://localhost:3000/contacts/1')
     .forBrowser('chrome')
     .build();
 })
-.then(() => driver.get('http://localhost:3000'))
+.then(() => driver.get('http://localhost:3000/contacts/1'))
 .then(() => driver.findElement(
   By.css('form[action=\'/contacts/1?_method=DELETE\'] > button'
 )).click())

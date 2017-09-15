@@ -1,24 +1,16 @@
-const {exec, execSync} = require('child_process');
+const {browser, By, makeDriver, reload, until} = require('../helpers/db');
 
-const webdriver = require('selenium-webdriver'),
-  By = webdriver.By,
-  until = webdriver.until;
+reload();
 
-execSync('npm run load_schema && npm run load_contacts');
-
-let driver = new webdriver.Builder()
-  .forBrowser('chrome')
-  .build();
+let driver = makeDriver();
 
 driver.get('http://localhost:3000/contacts/new')
+.then(() => driver.getPageSource())
+.then(source => console.log('Source:\n' + source))
 .then(() => driver.findElement(By.className('new-contact-form')))
 .then(() => driver.quit())
-.then(() => {
-  driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-})
-.then(() => exec('npm run load_schema && npm run load_contacts'))
+.then(() => driver = makeDriver())
+.then(() => reload())
 .then(() => driver.get('http://localhost:3000/contacts/new'))
 .then(() => driver.findElement(By.className('new-contact-formx')))
 .then(() => driver.quit())
