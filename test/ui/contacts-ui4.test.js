@@ -1,15 +1,4 @@
-// const {exec, execSync} = require('child_process');
-const driver = require('../helpers/db.js')
-
-// const webdriver = require('selenium-webdriver'),
-//   By = webdriver.By,
-//   until = webdriver.until;
-//
-// execSync('npm run load_schema && npm run load_contacts');
-//
-// let driver = new webdriver.Builder()
-//   .forBrowser('chrome')
-//   .build();
+const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/db.js')
 
 driver.get('http://localhost:3000/contacts/1')
 .then(() => driver.findElement(
@@ -30,14 +19,8 @@ driver.get('http://localhost:3000/contacts/1')
     throw 'Deleted contact #1 still found in page.';
   }
 })
-.then(() => driver.quit())
-.then(() => exec('npm run load_schema && npm run load_contacts'))
-.then(() => {
-  driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-})
-.then(() => driver.get('http://localhost:3000'))
+.then(() => reloadDatabase())
+.then(() => driver.get('http://localhost:3000/contacts/1'))
 .then(() => driver.findElement(
   By.css('form[action=\'/contacts/1?_method=DELETE\'] > button'
 )).click())

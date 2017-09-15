@@ -19,13 +19,7 @@ driver.get('http://localhost:3000')
     throw 'Deleted contact #2 still found in page.';
   }
 })
-// .then(() => driver.quit())
 .then(() => reloadDatabase())
-// .then(() => {
-//   driver = new webdriver.Builder()
-//     .forBrowser('chrome')
-//     .build();
-// })
 .then(() => driver.get('http://localhost:3000'))
 .then(() => driver.findElement(
   By.css('form[action=\'/contacts/2?_method=DELETE\'] > button'
