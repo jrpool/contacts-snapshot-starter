@@ -12,8 +12,8 @@ let driver = new webdriver.Builder()
 
 driver.get('http://localhost:3000')
 .then(() => driver.findElement(
-  By.css('form[action=\'/contacts/2?_method=DELETE\'] > button'
-)).click())
+  By.css('form[action=\'/contacts/2?_method=DELETE\'] > button')
+).click())
 .then(() => driver.wait(until.alertIsPresent(), 500))
 .then(alert => alert.accept())
 .then(() => driver.sleep(500)) // Must be about 100ms+ to await new page.
@@ -30,7 +30,6 @@ driver.get('http://localhost:3000')
   }
 })
 .then(() => driver.quit())
-// .then(() => driver.sleep(1000))
 .then(() => exec('npm run load_schema && npm run load_contacts'))
 .then(() => {
   driver = new webdriver.Builder()

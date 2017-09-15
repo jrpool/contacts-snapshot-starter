@@ -10,7 +10,7 @@
     "load_schema": "psql -d contacts_testing < src/models/db/schema/schema.sql",
     "load_contacts": "psql -d contacts_testing < test/seed/contacts.sql",
     "test": "mocha ./test/*/*.js",
-    "test:swd": "node ./test/ui/selenium-wd/contacts.test9.js",
+    "test:swd": "node ./test/ui/selenium-wd/contacts.test10.js",
     "test:wdio": "node ./test/ui/wdio/contacts.test5.js"
   },
   "keywords": [],
