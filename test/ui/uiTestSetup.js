@@ -1,4 +1,3 @@
-const {exec, execSync} = require('child_process');
 const webdriver = require('selenium-webdriver'),
   By = webdriver.By,
   until = webdriver.until;
@@ -9,8 +8,4 @@ let driver = new webdriver.Builder()
   .forBrowser('chrome')
   .build();
 
-  module.exports = {
-    driver,
-    By,
-    until
-  }
+  module.exports = driver

@@ -1,14 +1,15 @@
-const {exec, execSync} = require('child_process');
+// const {exec, execSync} = require('child_process');
+const driver = require('../helpers/db.js')
 
-const webdriver = require('selenium-webdriver'),
-  By = webdriver.By,
-  until = webdriver.until;
-
-execSync('npm run load_schema && npm run load_contacts');
-
-let driver = new webdriver.Builder()
-  .forBrowser('chrome')
-  .build();
+// const webdriver = require('selenium-webdriver'),
+//   By = webdriver.By,
+//   until = webdriver.until;
+//
+// execSync('npm run load_schema && npm run load_contacts');
+//
+// let driver = new webdriver.Builder()
+//   .forBrowser('chrome')
+//   .build();
 
 driver.get('http://localhost:3000/contacts/1')
 .then(() => driver.findElement(

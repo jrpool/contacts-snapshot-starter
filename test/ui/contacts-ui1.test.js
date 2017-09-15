@@ -1,14 +1,15 @@
-const {exec, execSync} = require('child_process');
+// const {exec, execSync} = require('child_process');
+const {webdriver, By, until, driver} = require('../helpers/db.js')
 
-const webdriver = require('selenium-webdriver'),
-  By = webdriver.By,
-  until = webdriver.until;
-
-execSync('npm run load_schema && npm run load_contacts');
-
-let driver = new webdriver.Builder()
-  .forBrowser('chrome')
-  .build();
+// const webdriver = require('selenium-webdriver'),
+//   By = webdriver.By,
+//   until = webdriver.until;
+//
+// execSync('npm run load_schema && npm run load_contacts');
+//
+// let driver = new webdriver.Builder()
+//   .forBrowser('chrome')
+//   .build();
 
 driver.get('http://localhost:3000/contacts/new')
 .then(() => driver.findElement(By.name('first_name')).sendKeys('Rhonda'))
@@ -21,7 +22,9 @@ driver.get('http://localhost:3000/contacts/new')
   }
 )
 .then(() => driver.getPageSource())
-.then(source => source.includes('Rhonda&nbsp;Smith'))
+.then(source => {
+  return source.includes('Smith')
+})
 .then(answer => {
   if (answer) {
     return true;
@@ -48,7 +51,7 @@ driver.get('http://localhost:3000/contacts/new')
   }
 )
 .then(() => driver.getPageSource())
-.then(source => source.includes('Rhonda&nbsp;Jones'))
+.then(source => source.includes('Jones'))
 .then(answer => {
   if (answer) {
     return true;
