@@ -14,6 +14,8 @@ Testing an existing web application that queries an API.
 
 This application satisfies the [requirements](https://curriculum.learnersguild.org/modules/Testing-Snapshot--Goal-446/) of the “Testing Snapshot” module (Module 446) in Phase 3 of the [Learners Guild][lg] curriculum.
 
+Per the requirements, the above-named authors have created the tests in this repository, but have not created or revised the other code.
+
 ### Implementation Summary
 
 The required end-to-end and integration tests were implemented with the `mocha` and `chai` libraries. The UI tests were implemented with the `selenium-webdriver` library.
