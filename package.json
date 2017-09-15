@@ -11,7 +11,7 @@
     "load_schema": "psql -d contacts_testing < src/models/db/schema/schema.sql",
     "load_contacts": "psql -d contacts_testing < test/seed/contacts.sql",
     "test:mocha": "mocha ./test/end-to-end/*.js ./test/integration/*.js",
-    "test:selenium": "node ./test/ui/*.js"
+    "test:selenium": "node ./test/ui/contacts-ui0.test.js && node ./test/ui/contacts-ui1.test.js && node ./test/ui/contacts-ui2.test.js && node ./test/ui/contacts-ui3.test.js && node ./test/ui/contacts-ui4.test.js"
   },
   "keywords": [],
   "author": "",
