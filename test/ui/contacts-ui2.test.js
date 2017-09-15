@@ -1,27 +1,10 @@
-// const {exec, execSync} = require('child_process');
-const driver = require('../helpers/db.js')
-
-// const webdriver = require('selenium-webdriver'),
-//   By = webdriver.By,
-//   until = webdriver.until;
-//
-// execSync('npm run load_schema && npm run load_contacts');
-//
-// let driver = new webdriver.Builder()
-//   .forBrowser('chrome')
-//   .build();
+const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/db.js')
 
 driver.get('http://localhost:3000')
 .then(()=> driver.findElement(By.partialLinkText('Jared')))
 .then(()=> driver.findElement(By.partialLinkText('Tanner')))
 .then(()=> driver.findElement(By.partialLinkText('NeEddra')))
-.then(() => driver.quit())
-.then(() => exec('npm run load_schema && npm run load_contacts'))
-.then(() => {
-  driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-})
+.then(() => reloadDatabase())
 .then(() => driver.get('http://localhost:3000'))
 .then(() => driver.findElement(By.partialLinkText('Rhonda')))
 .then(() => driver.quit())
