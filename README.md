@@ -40,6 +40,8 @@ In a code review by Punit Rathore on 2017-09-15, recommendations for improvement
 
 - Test for more expectations of response data, e.g. not only count of items but what they are, e.g. by checking deep equality of an object with an expected object, and not only 1 item in an array but all (e.g. with .map, .reduce, .join).
 
+- Rename “query” in test/integration/contacts-int-test.js to “contacts”.
+
 ## Installation and Configuration
 
 0. These instructions presuppose that (1) [npm][npm] and [PostgreSQL][pg] are installed, (2) there is a PostgreSQL database cluster, (3) PostgreSQL is running, and (4) when you connect to the cluster you are a PostgreSQL superuser.
