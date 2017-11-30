@@ -1,4 +1,5 @@
-const {webdriver, By, until, driver, reloadDatabase} = require('../helpers/ui.js')
+const {webdriver, By, until, driver, reloadDatabase}
+  = require('../helpers/ui.js');
 
 reloadDatabase()
 driver.get('http://localhost:3000/contacts/new')

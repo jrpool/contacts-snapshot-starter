@@ -18,7 +18,7 @@ Per the requirements, the above-named authors have created the tests in this rep
 
 ### Implementation Summary
 
-The required end-to-end and integration tests were implemented with the `mocha` and `chai` libraries. The UI tests were implemented with the `selenium-webdriver` library.
+The required end-to-end and integration tests were implemented with the `mocha` and `chai` libraries. The UI tests were implemented with the `selenium-webdriver` library, on the basis of its [JavaScript API documentation][swd].
 
 Experiments with using `zombie` as a UI testing library were conducted, and incomplete and erroneous code for these is present in the “test” directory, for inspection and further development if desired.
 
@@ -79,3 +79,4 @@ Make that parent directory your working directory, by executing, for example:
 [lg]: https://www.learnersguild.org
 [npm]: https://www.npmjs.com/
 [pg]: http://postgresql.org
+[swd]: http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html
