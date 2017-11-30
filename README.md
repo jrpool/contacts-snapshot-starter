@@ -56,7 +56,7 @@ Make that parent directory your working directory, by executing, for example:
 
 2. Clone this project’s repository into it, thereby creating the project directory, named (for example) `testing`, by executing:
 
-    `git clone https://github.com/jrpool/helpshare.git testing`
+    `git clone git@github.com/jrpool/contacts-snapshot-starter.git testing`
 
 3. Make the project directory your working directory by executing:
 
@@ -78,3 +78,4 @@ Make that parent directory your working directory, by executing, for example:
 
 [lg]: https://www.learnersguild.org
 [npm]: https://www.npmjs.com/
+[pg]: http://postgresql.org
